@@ -1,0 +1,603 @@
+ragavi@ragavi-VM:~$ cd devops_ws/
+ragavi@ragavi-VM:~/devops_ws$ git status
+On branch master
+nothing to commit, working tree clean
+ragavi@ragavi-VM:~/devops_ws$ ls
+hello3.txt     hello.log         jenkins_installation.txt  test.java
+hello_git.txt  HelloWorld.class  README.txt
+ragavi@ragavi-VM:~/devops_ws$ 
+ragavi@ragavi-VM:~/devops_ws$ 
+ragavi@ragavi-VM:~/devops_ws$ 
+ragavi@ragavi-VM:~/devops_ws$ vim test_conflict.txt
+ragavi@ragavi-VM:~/devops_ws$ git status
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	test_conflict.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+ragavi@ragavi-VM:~/devops_ws$ git add .
+ragavi@ragavi-VM:~/devops_ws$ git status
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	new file:   test_conflict.txt
+
+ragavi@ragavi-VM:~/devops_ws$ git commit -m "new file added for conflict"
+[master c401c0e] new file added for conflict
+ 1 file changed, 1 insertion(+)
+ create mode 100644 test_conflict.txt
+ragavi@ragavi-VM:~/devops_ws$ git status
+On branch master
+nothing to commit, working tree clean
+ragavi@ragavi-VM:~/devops_ws$ 
+ragavi@ragavi-VM:~/devops_ws$ 
+ragavi@ragavi-VM:~/devops_ws$ 
+ragavi@ragavi-VM:~/devops_ws$ 
+ragavi@ragavi-VM:~/devops_ws$ 
+ragavi@ragavi-VM:~/devops_ws$ git push origin master
+Username for 'https://github.com': parthidevops
+Password for 'https://parthidevops@github.com': 
+To https://github.com/parthidevops/devops_test.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/parthidevops/devops_test.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+ragavi@ragavi-VM:~/devops_ws$ git pull 
+remote: Enumerating objects: 4, done.
+remote: Counting objects: 100% (4/4), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 1), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), 698 bytes | 349.00 KiB/s, done.
+From https://github.com/parthidevops/devops_test
+   67534fe..f96de59  master     -> origin/master
+There is no tracking information for the current branch.
+Please specify which branch you want to merge with.
+See git-pull(1) for details.
+
+    git pull <remote> <branch>
+
+If you wish to set tracking information for this branch you can do so with:
+
+    git branch --set-upstream-to=origin/<branch> master
+
+ragavi@ragavi-VM:~/devops_ws$ git pull origin master
+From https://github.com/parthidevops/devops_test
+ * branch            master     -> FETCH_HEAD
+CONFLICT (add/add): Merge conflict in test_conflict.txt
+Auto-merging test_conflict.txt
+Automatic merge failed; fix conflicts and then commit the result.
+ragavi@ragavi-VM:~/devops_ws$ git status
+On branch master
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+  (use "git merge --abort" to abort the merge)
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+	both added:      test_conflict.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+ragavi@ragavi-VM:~/devops_ws$ vim test_conflict.txt 
+ragavi@ragavi-VM:~/devops_ws$ vim file1.html
+ragavi@ragavi-VM:~/devops_ws$ vim file2.html
+ragavi@ragavi-VM:~/devops_ws$ mkdir git
+ragavi@ragavi-VM:~/devops_ws$ cd git 
+ragavi@ragavi-VM:~/devops_ws/git$ mv ../file1.html .
+ragavi@ragavi-VM:~/devops_ws/git$ mv ../file2.html .
+ragavi@ragavi-VM:~/devops_ws/git$ git init
+Initialized empty Git repository in /home/ragavi/devops_ws/git/.git/
+ragavi@ragavi-VM:~/devops_ws/git$ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	file1.html
+	file2.html
+
+nothing added to commit but untracked files present (use "git add" to track)
+ragavi@ragavi-VM:~/devops_ws/git$ git add .
+ragavi@ragavi-VM:~/devops_ws/git$ git commit -m "master first commit"
+[master (root-commit) 30548ef] master first commit
+ 2 files changed, 3 insertions(+)
+ create mode 100644 file1.html
+ create mode 100644 file2.html
+ragavi@ragavi-VM:~/devops_ws/git$ git ls-files
+file1.html
+file2.html
+ragavi@ragavi-VM:~/devops_ws/git$ 
+ragavi@ragavi-VM:~/devops_ws/git$ 
+ragavi@ragavi-VM:~/devops_ws/git$ git branch
+* master
+ragavi@ragavi-VM:~/devops_ws/git$ git branch tst_branch
+ragavi@ragavi-VM:~/devops_ws/git$ git branch
+* master
+  tst_branch
+ragavi@ragavi-VM:~/devops_ws/git$ git ls-files
+file1.html
+file2.html
+ragavi@ragavi-VM:~/devops_ws/git$ git checkout tst_branch
+Switched to branch 'tst_branch'
+ragavi@ragavi-VM:~/devops_ws/git$ ls
+file1.html  file2.html
+ragavi@ragavi-VM:~/devops_ws/git$ git ls-files
+file1.html
+file2.html
+ragavi@ragavi-VM:~/devops_ws/git$ vim file3.html
+ragavi@ragavi-VM:~/devops_ws/git$ git add .
+ragavi@ragavi-VM:~/devops_ws/git$ git status
+On branch tst_branch
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	new file:   file3.html
+
+ragavi@ragavi-VM:~/devops_ws/git$ git commit -m "commit fot tst_branch"
+[tst_branch 04ffc0d] commit fot tst_branch
+ 1 file changed, 1 insertion(+)
+ create mode 100644 file3.html
+ragavi@ragavi-VM:~/devops_ws/git$ git log --online
+fatal: unrecognized argument: --online
+ragavi@ragavi-VM:~/devops_ws/git$ git log --oneline
+04ffc0d (HEAD -> tst_branch) commit fot tst_branch
+30548ef (master) master first commit
+ragavi@ragavi-VM:~/devops_ws/git$ git checkout master
+Switched to branch 'master'
+ragavi@ragavi-VM:~/devops_ws/git$ git ls-files
+file1.html
+file2.html
+ragavi@ragavi-VM:~/devops_ws/git$ git checkout tst_branch
+Switched to branch 'tst_branch'
+ragavi@ragavi-VM:~/devops_ws/git$ git ls-files
+file1.html
+file2.html
+file3.html
+ragavi@ragavi-VM:~/devops_ws/git$ git checkout master
+Switched to branch 'master'
+ragavi@ragavi-VM:~/devops_ws/git$ git merge tst_branch
+Updating 30548ef..04ffc0d
+Fast-forward
+ file3.html | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 file3.html
+ragavi@ragavi-VM:~/devops_ws/git$ git log --oneline
+04ffc0d (HEAD -> master, tst_branch) commit fot tst_branch
+30548ef master first commit
+ragavi@ragavi-VM:~/devops_ws/git$ git status
+On branch master
+nothing to commit, working tree clean
+ragavi@ragavi-VM:~/devops_ws/git$ git checkout tst_branch
+Switched to branch 'tst_branch'
+ragavi@ragavi-VM:~/devops_ws/git$ git log --oneline
+04ffc0d (HEAD -> tst_branch, master) commit fot tst_branch
+30548ef master first commit
+ragavi@ragavi-VM:~/devops_ws/git$ git status 
+On branch tst_branch
+nothing to commit, working tree clean
+ragavi@ragavi-VM:~/devops_ws/git$ 
+ragavi@ragavi-VM:~/devops_ws/git$ 
+ragavi@ragavi-VM:~/devops_ws/git$ git branch
+  master
+* tst_branch
+ragavi@ragavi-VM:~/devops_ws/git$ git checkout master
+Switched to branch 'master'
+ragavi@ragavi-VM:~/devops_ws/git$ ls
+file1.html  file2.html  file3.html
+ragavi@ragavi-VM:~/devops_ws/git$ vim file4.html
+ragavi@ragavi-VM:~/devops_ws/git$ git add .
+ragavi@ragavi-VM:~/devops_ws/git$ git commit -m "branch master1"
+[master 10b6e03] branch master1
+ 1 file changed, 1 insertion(+)
+ create mode 100644 file4.html
+ragavi@ragavi-VM:~/devops_ws/git$ git log --oneline
+10b6e03 (HEAD -> master) branch master1
+04ffc0d (tst_branch) commit fot tst_branch
+30548ef master first commit
+ragavi@ragavi-VM:~/devops_ws/git$ git log --oneline master
+10b6e03 (HEAD -> master) branch master1
+04ffc0d (tst_branch) commit fot tst_branch
+30548ef master first commit
+ragavi@ragavi-VM:~/devops_ws/git$ git checkout tst_branch
+Switched to branch 'tst_branch'
+ragavi@ragavi-VM:~/devops_ws/git$ git log --oneline master
+10b6e03 (master) branch master1
+04ffc0d (HEAD -> tst_branch) commit fot tst_branch
+30548ef master first commit
+ragavi@ragavi-VM:~/devops_ws/git$ git ls-files
+file1.html
+file2.html
+file3.html
+ragavi@ragavi-VM:~/devops_ws/git$ vim file4.html
+ragavi@ragavi-VM:~/devops_ws/git$ git add .
+ragavi@ragavi-VM:~/devops_ws/git$ git commit -m "branch test_branch"
+[tst_branch a9c3da1] branch test_branch
+ 1 file changed, 1 insertion(+)
+ create mode 100644 file4.html
+ragavi@ragavi-VM:~/devops_ws/git$ git ls-files
+file1.html
+file2.html
+file3.html
+file4.html
+ragavi@ragavi-VM:~/devops_ws/git$ git checkout master
+Switched to branch 'master'
+ragavi@ragavi-VM:~/devops_ws/git$ 
+ragavi@ragavi-VM:~/devops_ws/git$ 
+ragavi@ragavi-VM:~/devops_ws/git$ git merge tst_branch
+CONFLICT (add/add): Merge conflict in file4.html
+Auto-merging file4.html
+Automatic merge failed; fix conflicts and then commit the result.
+ragavi@ragavi-VM:~/devops_ws/git$ vim file4.html 
+ragavi@ragavi-VM:~/devops_ws/git$ git add .
+ragavi@ragavi-VM:~/devops_ws/git$ git commit -m "merge conflict resolved"
+[master 36946d4] merge conflict resolved
+ragavi@ragavi-VM:~/devops_ws/git$ git log --oneline
+36946d4 (HEAD -> master) merge conflict resolved
+a9c3da1 (tst_branch) branch test_branch
+10b6e03 branch master1
+04ffc0d commit fot tst_branch
+30548ef master first commit
+ragavi@ragavi-VM:~/devops_ws/git$ git log --oneline master
+36946d4 (HEAD -> master) merge conflict resolved
+a9c3da1 (tst_branch) branch test_branch
+10b6e03 branch master1
+04ffc0d commit fot tst_branch
+30548ef master first commit
+ragavi@ragavi-VM:~/devops_ws/git$ 
+ragavi@ragavi-VM:~/devops_ws/git$ 
+ragavi@ragavi-VM:~/devops_ws/git$ git log --oneline tst_branch
+a9c3da1 (tst_branch) branch test_branch
+04ffc0d commit fot tst_branch
+30548ef master first commit
+ragavi@ragavi-VM:~/devops_ws/git$ git status
+On branch master
+nothing to commit, working tree clean
+ragavi@ragavi-VM:~/devops_ws/git$ git checkout master
+Already on 'master'
+ragavi@ragavi-VM:~/devops_ws/git$ git log --oneline
+36946d4 (HEAD -> master) merge conflict resolved
+a9c3da1 (tst_branch) branch test_branch
+10b6e03 branch master1
+04ffc0d commit fot tst_branch
+30548ef master first commit
+ragavi@ragavi-VM:~/devops_ws/git$ git revert a9c3da1
+CONFLICT (modify/delete): file4.html deleted in parent of a9c3da1... branch test_branch and modified in HEAD. Version HEAD of file4.html left in tree.
+error: could not revert a9c3da1... branch test_branch
+hint: after resolving the conflicts, mark the corrected paths
+hint: with 'git add <paths>' or 'git rm <paths>'
+hint: and commit the result with 'git commit'
+ragavi@ragavi-VM:~/devops_ws/git$ git status
+On branch master
+You are currently reverting commit a9c3da1.
+  (fix conflicts and run "git revert --continue")
+  (use "git revert --skip" to skip this patch)
+  (use "git revert --abort" to cancel the revert operation)
+
+Unmerged paths:
+  (use "git restore --staged <file>..." to unstage)
+  (use "git add/rm <file>..." as appropriate to mark resolution)
+	deleted by them: file4.html
+
+no changes added to commit (use "git add" and/or "git commit -a")
+ragavi@ragavi-VM:~/devops_ws/git$ git add .
+ragavi@ragavi-VM:~/devops_ws/git$ git commit -m "resolving unfix issues"
+On branch master
+You are currently reverting commit a9c3da1.
+  (all conflicts fixed: run "git revert --continue")
+  (use "git revert --skip" to skip this patch)
+  (use "git revert --abort" to cancel the revert operation)
+
+nothing to commit, working tree clean
+ragavi@ragavi-VM:~/devops_ws/git$ 
+ragavi@ragavi-VM:~/devops_ws/git$ git log --oneline
+36946d4 (HEAD -> master) merge conflict resolved
+a9c3da1 (tst_branch) branch test_branch
+10b6e03 branch master1
+04ffc0d commit fot tst_branch
+30548ef master first commit
+ragavi@ragavi-VM:~/devops_ws/git$ git revert 10b6e03
+CONFLICT (modify/delete): file4.html deleted in parent of 10b6e03... branch master1 and modified in HEAD. Version HEAD of file4.html left in tree.
+error: could not revert 10b6e03... branch master1
+hint: after resolving the conflicts, mark the corrected paths
+hint: with 'git add <paths>' or 'git rm <paths>'
+hint: and commit the result with 'git commit'
+ragavi@ragavi-VM:~/devops_ws/git$ git status
+On branch master
+You are currently reverting commit 10b6e03.
+  (fix conflicts and run "git revert --continue")
+  (use "git revert --skip" to skip this patch)
+  (use "git revert --abort" to cancel the revert operation)
+
+Unmerged paths:
+  (use "git restore --staged <file>..." to unstage)
+  (use "git add/rm <file>..." as appropriate to mark resolution)
+	deleted by them: file4.html
+
+no changes added to commit (use "git add" and/or "git commit -a")
+ragavi@ragavi-VM:~/devops_ws/git$ git add .
+ragavi@ragavi-VM:~/devops_ws/git$ git commit -m "resolving conflicts issues"
+On branch master
+You are currently reverting commit 10b6e03.
+  (all conflicts fixed: run "git revert --continue")
+  (use "git revert --skip" to skip this patch)
+  (use "git revert --abort" to cancel the revert operation)
+
+nothing to commit, working tree clean
+ragavi@ragavi-VM:~/devops_ws/git$ git status
+On branch master
+You are currently reverting commit 10b6e03.
+  (all conflicts fixed: run "git revert --continue")
+  (use "git revert --skip" to skip this patch)
+  (use "git revert --abort" to cancel the revert operation)
+
+nothing to commit, working tree clean
+ragavi@ragavi-VM:~/devops_ws/git$ git log --oneline
+36946d4 (HEAD -> master) merge conflict resolved
+a9c3da1 (tst_branch) branch test_branch
+10b6e03 branch master1
+04ffc0d commit fot tst_branch
+30548ef master first commit
+ragavi@ragavi-VM:~/devops_ws/git$ ls
+file1.html  file2.html  file3.html  file4.html
+ragavi@ragavi-VM:~/devops_ws/git$ more file4.html 
+this is my file 4 in master
+this is my file in tst branch
+ragavi@ragavi-VM:~/devops_ws/git$ 
+ragavi@ragavi-VM:~/devops_ws/git$ 
+ragavi@ragavi-VM:~/devops_ws/git$ 
+ragavi@ragavi-VM:~/devops_ws/git$ vim file5.html
+ragavi@ragavi-VM:~/devops_ws/git$ git add .
+ragavi@ragavi-VM:~/devops_ws/git$ git commit -m "new commit file5 in master"
+[master 14b341d] new commit file5 in master
+ 1 file changed, 1 insertion(+)
+ create mode 100644 file5.html
+ragavi@ragavi-VM:~/devops_ws/git$ git log --oneline
+14b341d (HEAD -> master) new commit file5 in master
+36946d4 merge conflict resolved
+a9c3da1 (tst_branch) branch test_branch
+10b6e03 branch master1
+04ffc0d commit fot tst_branch
+30548ef master first commit
+ragavi@ragavi-VM:~/devops_ws/git$ ls
+file1.html  file2.html  file3.html  file4.html  file5.html
+ragavi@ragavi-VM:~/devops_ws/git$ git revert 14b341d
+Removing file5.html
+[master 513aadb] Revert "new commit file5 in master"
+ 1 file changed, 1 deletion(-)
+ delete mode 100644 file5.html
+ragavi@ragavi-VM:~/devops_ws/git$ ls
+file1.html  file2.html  file3.html  file4.html
+ragavi@ragavi-VM:~/devops_ws/git$ git log --oneline
+513aadb (HEAD -> master) Revert "new commit file5 in master"
+14b341d new commit file5 in master
+36946d4 merge conflict resolved
+a9c3da1 (tst_branch) branch test_branch
+10b6e03 branch master1
+04ffc0d commit fot tst_branch
+30548ef master first commit
+ragavi@ragavi-VM:~/devops_ws/git$ vim file5.html
+ragavi@ragavi-VM:~/devops_ws/git$ git status
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	file5.html
+
+nothing added to commit but untracked files present (use "git add" to track)
+ragavi@ragavi-VM:~/devops_ws/git$ git stash 
+No local changes to save
+ragavi@ragavi-VM:~/devops_ws/git$ git status
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	file5.html
+
+nothing added to commit but untracked files present (use "git add" to track)
+ragavi@ragavi-VM:~/devops_ws/git$ git add .
+ragavi@ragavi-VM:~/devops_ws/git$ ls
+file1.html  file2.html  file3.html  file4.html  file5.html
+ragavi@ragavi-VM:~/devops_ws/git$ git stash 
+Saved working directory and index state WIP on master: 513aadb Revert "new commit file5 in master"
+ragavi@ragavi-VM:~/devops_ws/git$ git status
+On branch master
+nothing to commit, working tree clean
+ragavi@ragavi-VM:~/devops_ws/git$ git stash list
+stash@{0}: WIP on master: 513aadb Revert "new commit file5 in master"
+ragavi@ragavi-VM:~/devops_ws/git$ git show stash@{0}
+commit da14bb151aa6b60858a6ca28ef05ac4e1bb439d2 (refs/stash)
+Merge: 513aadb d20a24f
+Author: test_git <parthi06@gmail.com>
+Date:   Sat Jul 25 22:03:29 2020 +0530
+
+    WIP on master: 513aadb Revert "new commit file5 in master"
+
+ragavi@ragavi-VM:~/devops_ws/git$ git stash pop
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	new file:   file5.html
+
+Dropped refs/stash@{0} (da14bb151aa6b60858a6ca28ef05ac4e1bb439d2)
+ragavi@ragavi-VM:~/devops_ws/git$ git status
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	new file:   file5.html
+
+ragavi@ragavi-VM:~/devops_ws/git$ git commit -m "commited from stash"
+[master 61a39e6] commited from stash
+ 1 file changed, 1 insertion(+)
+ create mode 100644 file5.html
+ragavi@ragavi-VM:~/devops_ws/git$ git status
+On branch master
+nothing to commit, working tree clean
+ragavi@ragavi-VM:~/devops_ws/git$ git branch 
+* master
+  tst_branch
+ragavi@ragavi-VM:~/devops_ws/git$ git branch b1 tst_branch
+ragavi@ragavi-VM:~/devops_ws/git$ git log --oneline b1
+a9c3da1 (tst_branch, b1) branch test_branch
+04ffc0d commit fot tst_branch
+30548ef master first commit
+ragavi@ragavi-VM:~/devops_ws/git$ git log --oneline master
+61a39e6 (HEAD -> master) commited from stash
+513aadb Revert "new commit file5 in master"
+14b341d new commit file5 in master
+36946d4 merge conflict resolved
+a9c3da1 (tst_branch, b1) branch test_branch
+10b6e03 branch master1
+04ffc0d commit fot tst_branch
+30548ef master first commit
+ragavi@ragavi-VM:~/devops_ws/git$ 
+ragavi@ragavi-VM:~/devops_ws/git$ 
+ragavi@ragavi-VM:~/devops_ws/git$ pwd
+/home/ragavi/devops_ws/git
+ragavi@ragavi-VM:~/devops_ws/git$ git status
+On branch master
+nothing to commit, working tree clean
+ragavi@ragavi-VM:~/devops_ws/git$ vim file6.txt
+ragavi@ragavi-VM:~/devops_ws/git$ vim file7.txt
+ragavi@ragavi-VM:~/devops_ws/git$ git add .
+ragavi@ragavi-VM:~/devops_ws/git$ git stash -p
+No changes.
+No changes selected
+ragavi@ragavi-VM:~/devops_ws/git$ git stash -p file6.txt
+No changes.
+No changes selected
+ragavi@ragavi-VM:~/devops_ws/git$ git diff
+ragavi@ragavi-VM:~/devops_ws/git$ git stash
+Saved working directory and index state WIP on master: 61a39e6 commited from stash
+ragavi@ragavi-VM:~/devops_ws/git$ git stash list
+stash@{0}: WIP on master: 61a39e6 commited from stash
+ragavi@ragavi-VM:~/devops_ws/git$ git log --oneline master
+61a39e6 (HEAD -> master) commited from stash
+513aadb Revert "new commit file5 in master"
+14b341d new commit file5 in master
+36946d4 merge conflict resolved
+a9c3da1 (tst_branch, b1) branch test_branch
+10b6e03 branch master1
+04ffc0d commit fot tst_branch
+30548ef master first commit
+ragavi@ragavi-VM:~/devops_ws/git$ git reset --hard 30548ef
+HEAD is now at 30548ef master first commit
+ragavi@ragavi-VM:~/devops_ws/git$ git log --oneline master
+30548ef (HEAD -> master) master first commit
+ragavi@ragavi-VM:~/devops_ws/git$ git reset --hard 61a39e6
+HEAD is now at 61a39e6 commited from stash
+ragavi@ragavi-VM:~/devops_ws/git$ git log --oneline master
+61a39e6 (HEAD -> master) commited from stash
+513aadb Revert "new commit file5 in master"
+14b341d new commit file5 in master
+36946d4 merge conflict resolved
+a9c3da1 (tst_branch, b1) branch test_branch
+10b6e03 branch master1
+04ffc0d commit fot tst_branch
+30548ef master first commit
+ragavi@ragavi-VM:~/devops_ws/git$ git status
+On branch master
+nothing to commit, working tree clean
+ragavi@ragavi-VM:~/devops_ws/git$ ls
+file1.html  file2.html  file3.html  file4.html  file5.html
+ragavi@ragavi-VM:~/devops_ws/git$ git reset --hard 04ffc0d
+HEAD is now at 04ffc0d commit fot tst_branch
+ragavi@ragavi-VM:~/devops_ws/git$ git log --oneline master
+04ffc0d (HEAD -> master) commit fot tst_branch
+30548ef master first commit
+ragavi@ragavi-VM:~/devops_ws/git$ 
+ragavi@ragavi-VM:~/devops_ws/git$ 
+ragavi@ragavi-VM:~/devops_ws/git$ 
+ragavi@ragavi-VM:~/devops_ws/git$ git status
+On branch master
+nothing to commit, working tree clean
+ragavi@ragavi-VM:~/devops_ws/git$ ls
+file1.html  file2.html  file3.html
+ragavi@ragavi-VM:~/devops_ws/git$ git branch
+  b1
+* master
+  tst_branch
+ragavi@ragavi-VM:~/devops_ws/git$ git branch -d b1
+error: The branch 'b1' is not fully merged.
+If you are sure you want to delete it, run 'git branch -D b1'.
+ragavi@ragavi-VM:~/devops_ws/git$ git branch -D b1
+Deleted branch b1 (was a9c3da1).
+ragavi@ragavi-VM:~/devops_ws/git$ git branch -d tst_branch
+error: The branch 'tst_branch' is not fully merged.
+If you are sure you want to delete it, run 'git branch -D tst_branch'.
+ragavi@ragavi-VM:~/devops_ws/git$ git branch -D tst_branch
+Deleted branch tst_branch (was a9c3da1).
+ragavi@ragavi-VM:~/devops_ws/git$ git status
+On branch master
+nothing to commit, working tree clean
+ragavi@ragavi-VM:~/devops_ws/git$ 
+ragavi@ragavi-VM:~/devops_ws/git$ 
+ragavi@ragavi-VM:~/devops_ws/git$ git branch b1 master
+ragavi@ragavi-VM:~/devops_ws/git$ git branch
+  b1
+* master
+ragavi@ragavi-VM:~/devops_ws/git$ git checkout b1
+Switched to branch 'b1'
+ragavi@ragavi-VM:~/devops_ws/git$ git status
+On branch b1
+nothing to commit, working tree clean
+ragavi@ragavi-VM:~/devops_ws/git$ ls
+file1.html  file2.html  file3.html
+ragavi@ragavi-VM:~/devops_ws/git$ git checkout master
+Switched to branch 'master'
+ragavi@ragavi-VM:~/devops_ws/git$ vim file4.html
+ragavi@ragavi-VM:~/devops_ws/git$ git add .
+ragavi@ragavi-VM:~/devops_ws/git$ git commit -m "master commit "
+[master 6fbc649] master commit
+ 1 file changed, 1 insertion(+)
+ create mode 100644 file4.html
+ragavi@ragavi-VM:~/devops_ws/git$ ls
+file1.html  file2.html  file3.html  file4.html
+ragavi@ragavi-VM:~/devops_ws/git$ git checkout b1
+Switched to branch 'b1'
+ragavi@ragavi-VM:~/devops_ws/git$ ls
+file1.html  file2.html  file3.html
+ragavi@ragavi-VM:~/devops_ws/git$ vim file5.html
+ragavi@ragavi-VM:~/devops_ws/git$ git add .
+ragavi@ragavi-VM:~/devops_ws/git$ git commit -m "commit on b1"
+[b1 3a08cce] commit on b1
+ 1 file changed, 1 insertion(+)
+ create mode 100644 file5.html
+ragavi@ragavi-VM:~/devops_ws/git$ ls
+file1.html  file2.html  file3.html  file5.html
+ragavi@ragavi-VM:~/devops_ws/git$ git log --oneline
+3a08cce (HEAD -> b1) commit on b1
+04ffc0d commit fot tst_branch
+30548ef master first commit
+ragavi@ragavi-VM:~/devops_ws/git$ ls
+file1.html  file2.html  file3.html  file5.html
+ragavi@ragavi-VM:~/devops_ws/git$ git log --oneline
+3a08cce (HEAD -> b1) commit on b1
+04ffc0d commit fot tst_branch
+30548ef master first commit
+ragavi@ragavi-VM:~/devops_ws/git$ git log --oneline master
+6fbc649 (master) master commit
+04ffc0d commit fot tst_branch
+30548ef master first commit
+ragavi@ragavi-VM:~/devops_ws/git$ git log --oneline b1
+3a08cce (HEAD -> b1) commit on b1
+04ffc0d commit fot tst_branch
+30548ef master first commit
+ragavi@ragavi-VM:~/devops_ws/git$ git rebase master
+First, rewinding head to replay your work on top of it...
+Applying: commit on b1
+ragavi@ragavi-VM:~/devops_ws/git$ git log --oneline b1
+ad6d430 (HEAD -> b1) commit on b1
+6fbc649 (master) master commit
+04ffc0d commit fot tst_branch
+30548ef master first commit
+ragavi@ragavi-VM:~/devops_ws/git$ git branch
+* b1
+  master
+ragavi@ragavi-VM:~/devops_ws/git$ git push origin b1 
+fatal: 'origin' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+ragavi@ragavi-VM:~/devops_ws/git$ 
