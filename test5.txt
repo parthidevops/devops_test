@@ -1,2 +1,0 @@
-this is a test file for kdiff3 in remote
-this is the test file for kdiff3 local

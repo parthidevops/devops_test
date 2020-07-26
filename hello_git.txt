@@ -1,3 +1,0 @@
-Hello git world!!
-
-this is my test file of git - a part of devops handson
